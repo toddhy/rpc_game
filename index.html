@@ -1,7 +1,7 @@
-<script>
+<script> 
 	function computerPlay() {
 		play = Math.floor(Math.random() * 3);
-		if (play === 0) {
+		 if (play === 0) {
 			return 'Rock'; 
 		}
 		else if (play === 1) {
@@ -11,7 +11,47 @@
 			return 'Scissors';
 		}
 	
-}
-console.log(computerPlay());
+	}
+//console.log(computerPlay());
 
+	function playRound(playerSelection, computerSelection) {
+		let player = playerSelection.toLowerCase();
+		let comp = computerSelection.toLowerCase();
+
+		if (player === comp) {console.log("The round is a tie.");}
+		else if (player === 'rock') {
+			if (comp === 'paper') {console.log("Paper beats rock. computer wins."); return 2} 
+			else if (comp === 'scissors') {console.log("Rock beats scissors. Player wins.");return 1;}
+		}
+		else if (player === 'paper') {
+			if (comp === 'scissors') {console.log("Scissors beats paper. Computer wins."); return 2;}
+			else if (comp === 'rock') {console.log("Paper beats rock. Player wins."); return 1;}
+		}
+		else if (player === 'scissors') {
+			if (comp === 'paper') {console.log("Scissors beats paper. Player wins.");return 1;}
+			else if (comp === 'rock') {console.log("Rock beats scissors. Computer wins.");return 2;}
+		}
+		
+	}
+//console.log(playRound('PAPER', computerPlay()));
+
+	function game() {
+		let player_score = 0;
+		let comp_score = 0;
+//		let player_choice = prompt();
+		let round = 0;
+
+		while (round < 5) {
+			let round_score = playRound(prompt('Rock, paper or scissors. What is your choice?'), computerPlay());
+			if (round_score === 1) {player_score++;}
+			else if (round_score === 2) {comp_score++;}
+			round++;
+		}
+		if (player_score === comp_score) {console.log("Game ends in a tie.")}
+		else if (player_score > comp_score) {console.log("Player wins!")}
+		else if (player_score < comp_score) {console.log("Computer wins!")}
+		console.log("Player score: ", player_score, "Computer score: ", comp_score);
+	}
+
+game();
 </script>
